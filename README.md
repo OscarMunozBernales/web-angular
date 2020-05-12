@@ -1,2 +1,2 @@
 # web-angular
-Creación de una página en Angular 6
+Creación de una página en Angular
