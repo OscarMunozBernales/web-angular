@@ -1,16 +1,19 @@
 (function(){
 
-    const sumar = ( numero1:number, numero2:number ) => {
-        return numero1 + numero2;
+    function activar( 
+            quien:string, 
+            momento?:string,
+            objeto:string = 'Batiseñal'){
+
+        if( momento ){
+            console.log( `${ quien } activó la ${ objeto }, en la ${ momento }` );
+        }else{
+            console.log( `${ quien } activó la ${ objeto }` );
+        }
+
     }
 
-    const nombre    = 'Oscar';
-    const apellido  = 'Muñoz';
-    const edad      = 28;
-
-    const salida = `${ nombre } ${ apellido }, ${ edad } años de edad`;
-
-    console.log( salida );
-    console.log( `${ sumar(30, 12) }`);
+    activar('Joker');
+    activar('Gordon', 'batiseñal', 'tarde');
 
 })();

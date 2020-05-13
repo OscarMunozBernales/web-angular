@@ -1,12 +1,14 @@
 "use strict";
 (function () {
-    var sumar = function (numero1, numero2) {
-        return numero1 + numero2;
-    };
-    var nombre = 'Oscar';
-    var apellido = 'Muñoz';
-    var edad = 28;
-    var salida = nombre + " " + apellido + ", " + edad + " a\u00F1os de edad";
-    console.log(salida);
-    console.log("" + sumar(30, 12));
+    function activar(quien, momento, objeto) {
+        if (objeto === void 0) { objeto = 'Batiseñal'; }
+        if (momento) {
+            console.log(quien + " activ\u00F3 la " + objeto + ", en la " + momento);
+        }
+        else {
+            console.log(quien + " activ\u00F3 la " + objeto);
+        }
+    }
+    activar('Joker');
+    activar('Gordon', 'batiseñal', 'tarde');
 })();
