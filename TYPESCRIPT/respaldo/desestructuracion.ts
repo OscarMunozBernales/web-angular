@@ -1,50 +1,43 @@
-(function(){
-
+(()=>{
 
     const avenger = {
-        nombre  : 'Peter',
-        poder   : 'Poderes aracnidos',
-        clave   : 'Spiderman'
-    };
-
-    // DESESTRUCTURACION
-
-    const { nombre , poder, clave } = avenger;
-    console.log( nombre );
-    console.log( poder );
-    console.log( clave );
-
-    // DESESTRUCTURACION EN UNA FUNCION
-
-    const extraer = ( {nombre, clave} : any ) => {
-        console.log( nombre );
-        console.log( clave );
+        nombre: 'Steve',
+        clave:  'Capitán América',
+        poder:  'Droga'
     }
 
-    extraer( avenger );
+    const extraer = ({ nombre, poder }: any ) => {
 
-    // EXTRAER ELEMENTOS DESDE UN ARREGLO
+        // const { nombre, poder } = avenger;
 
-    const avengers:string[] = ['Thor', 'IronMan', 'SpiderMan'];
+        console.log( nombre );
+        console.log( poder );
 
-    const [ martillo, sexboy, arana ] = avengers;
+    }
 
-    console.log( martillo );
-    console.log( sexboy );
-    console.log( arana );
+    // extraer( avenger );
+    
 
-    const [ , , posicion3 ] = avengers; // ESTO QUIERE DECIR QUE NO NOS INTERESA LA POS 1 Y 2 PERO SI LA 3
+    const avengers: string[] = ['Thor','Ironman', 'Spiderman'];
+    
+    const [ , , arana ] = avengers;
 
-    console.log( posicion3 );
+    // console.log( loki );
+    // console.log( hombre );
+    // console.log( arana );
 
-    const extraerArr = ( [ thor, ironman, spiderman ]: string[] ) => {
+    const extraerArr = ( [thor, ironman, spiderman]: string[] ) => {
+
         console.log( thor );
         console.log( ironman );
         console.log( spiderman );
+
     }
 
     extraerArr( avengers );
 
 
-
 })();
+
+
+
