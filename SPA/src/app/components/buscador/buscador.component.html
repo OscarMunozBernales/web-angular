@@ -1,0 +1,32 @@
+<h1>Buscando: <small>"{{ termino | uppercase}}"</small> </h1>
+
+<hr>
+
+<div class="row" *ngIf="!buscado">
+    <div class="col-md-12">
+        <div class="alert alert-info" role="alert">
+            No existen resultados con el término: {{ termino }}
+        </div>
+    </div>
+</div>
+<div class="row" *ngIf="buscado">
+    <div class="col col-sm-12 col-md-12 col-lg-12 col-xl-12">
+
+        <div class="card-columns">
+
+            <app-heroe-tarjeta [heroe]="heroe" [idx]="i" *ngFor="let heroe of heroes; let i = index"></app-heroe-tarjeta>
+            <!-- <div class="card animated fadeIn fast" *ngFor="let heroe of heroes; let i = index">
+                <img [src]="heroe.img" class="card-img-top" [alt]="heroe.nombre">
+                <div class="card-body">
+                    <h5 class="card-title">{{ heroe.nombre }}</h5>
+                    <p class="card-text">{{ heroe.bio }}</p>
+                    <p class="card-text"><small class="text-muted">{{ heroe.aparicion }}</small></p>
+                    <button (click)="verHeroe( i )" class="btn btn-outline-primary btn-block"> Ver mas</button>
+                </div>
+            </div> -->
+
+        </div>
+
+    </div>
+
+</div>
