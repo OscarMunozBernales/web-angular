@@ -27,6 +27,7 @@ export class BuscadorComponent implements OnInit {
       this.heroes = this.heroeService.buscarHeroes( params.termino );
       this.buscado = this.heroes.length > 0 ? true : false;
 
+      console.log( this.heroes );
     });
   }
 

@@ -77,13 +77,16 @@ export class HeroesService {
         let heroeArr: Heroe[] = [];
         termino = termino.toLowerCase();
 
-        // tslint:disable-next-line:prefer-const
-        for ( let heroe of this.heroes ){
+        // tslint:disable-next-line:prefer-for-of
+        for ( let i = 0; i < this.heroes.length; i++ ){
+
+            let heroe = this.heroes[i];
 
             // tslint:disable-next-line:prefer-const
             let nombre = heroe.nombre.toLowerCase();
 
             if ( nombre.indexOf( termino ) >= 0 ){
+                heroe.idx = i;
                 heroeArr.push( heroe );
             }
         }
@@ -99,4 +102,5 @@ export interface Heroe{
     img: string;
     aparicion: string;
     casa: string;
+    idx?: number;
 }
