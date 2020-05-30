@@ -2,6 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
+// PETICIONES HTTP
+import { HttpClientModule } from '@angular/common/http';
+
 // RUTAS
 import { ROUTES_APP } from './app.routes';
 
@@ -22,6 +25,7 @@ import { NavbarComponent } from './components/shared/navbar/navbar.component';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     RouterModule.forRoot( ROUTES_APP, { useHash: true } )
   ],
   providers: [],
