@@ -8,7 +8,7 @@
     <div class="col">
         <h3>{{ artista.name | uppercase }}</h3>
         <p>
-            <a [href]="artista.external_urls.spotify" target="_blank">Ir a la página del artista</a>
+            <!-- <a [href]="artista.external_urls.spotify" target="_blank">Ir a la página del artista</a> -->
         </p>
     </div>
     <div class="col-4 text-right">
@@ -36,7 +36,11 @@
                     <td><img [src]="top.album.images | noimages" alt="" class="img-thumb img-circle"></td>
                     <td>{{ top.album.name }}</td>
                     <td>{{ top.name }}</td>
-                    <td> <audio [src]="top.preview_url" controls></audio> </td>
+                    <td> 
+                        <!-- <audio [src]="top.preview_url" controls></audio>  -->
+                        <iframe [src]="top.id | domseguro:'https://open.spotify.com/embed/track/'" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                        
+                    </td>
                 </tr>
             </tbody>
 

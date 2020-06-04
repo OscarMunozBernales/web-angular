@@ -15,10 +15,11 @@ import { SearchComponent }  from './components/search/search.component';
 import { ArtistaComponent } from './components/artista/artista.component';
 import { NavbarComponent }  from './components/shared/navbar/navbar.component';
 import { CardComponent }    from './components/shared/card/card.component';
+import { LoadComponent } from './components/shared/load/load.component';
 
 // PIPES
 import { NoimagesPipe } from './pipes/noimages.pipe';
-import { LoadComponent } from './components/shared/load/load.component';
+import { DomseguroPipe } from './pipes/domseguro.pipe';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { LoadComponent } from './components/shared/load/load.component';
     ArtistaComponent,
     NavbarComponent,
     NoimagesPipe,
+    DomseguroPipe,
     CardComponent,
     LoadComponent
   ],
