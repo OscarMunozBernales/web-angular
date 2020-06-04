@@ -13,31 +13,12 @@ export class SpotifyService {
     // console.log( 'Spotify s  ervices listo!' );
   }
 
-  getToken(){
-
-    const URL = 'https://accounts.spotify.com/api/token';
-
-    const body = new HttpParams()
-      .set( 'grant_type' , 'client_credentials' )
-      .set( 'client_id' , '477e5302809c412196164a9440cfd32f' )
-      .set( 'client_secret' , 'e4948ef7abbd4f9492b00a9c78dd6e42' );
-    
-
-    const headers = new HttpHeaders().set( 'Content-Type', 'application/x-www-form-urlencoded' );
-
-    return this.http.post( URL, body.toString, { headers } );
-
-    // console.log( body );
-  }
-
   getQuery( query: string){
     const URL = `https://api.spotify.com/v1/${ query }`;
 
     const headers = new HttpHeaders({
       Authorization: 'Bearer BQDblXRiSWOs92VhcluyMiSJZTdcAJIyx1L1Tk38_AVcoYK7j0JLG4T9LsxERfi7PWowiVQGZ53WnZWkC2' // k
     });
-
-    // console.log( this.getToken() );
 
     return this.http.get(URL, {headers});
   }
