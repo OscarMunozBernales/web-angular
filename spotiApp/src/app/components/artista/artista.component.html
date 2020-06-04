@@ -1,1 +1,47 @@
-<p>artista works!</p>
+<app-load *ngIf="loading" class="animated fadeIn"></app-load>
+
+<div class="row animated fadeIn" *ngIf="!loading">
+
+    <div class="col-2">
+        <img [src]="artista.images | noimages" alt="" class="img-thumbnail img-circle">
+    </div>
+    <div class="col">
+        <h3>{{ artista.name | uppercase }}</h3>
+        <p>
+            <a [href]="artista.external_urls.spotify" target="_blank">Ir a la página del artista</a>
+        </p>
+    </div>
+    <div class="col-4 text-right">
+        <button routerLink="/search" class="btn btn-outline-danger">Regresar</button>
+    </div>
+
+</div>
+
+<div class="row m-5">
+
+    <div class="col">
+
+        <table class="table" style="color: white;">
+
+            <thead>
+                <tr>
+                    <th> Foto </th>
+                    <th> Albun </th>
+                    <th> Canción </th>
+                    <th> Vista Previa </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let top of topTracks">
+                    <td><img [src]="top.album.images | noimages" alt="" class="img-thumb img-circle"></td>
+                    <td>{{ top.album.name }}</td>
+                    <td>{{ top.name }}</td>
+                    <td> <audio [src]="top.preview_url" controls></audio> </td>
+                </tr>
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
