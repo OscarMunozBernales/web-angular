@@ -7,16 +7,24 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class SpotifyService {
 
   constructor( private http: HttpClient) {
-    console.log( 'Spotify services listo!' );
+    // console.log( 'Spotify s  ervices listo!' );
   }
 
   getNewReleases(){
 
     const headers = new HttpHeaders({
-      Authorization: 'Bearer BQDujo1ngcEYCV8wXI3K9eAsX439dzDqsdGroZ9wnlZqJK7mB8YH783kcXAaeboHQZgVk6Z8KVKJvhDzauY'
+      Authorization: 'Bearer BQCD6YYqngZcgZ0gfyeShUzrOcHdSAJCxFWHFt2ftEfHFzUZ2tYZTEZxph9zyn1RFn6MOS2UsPfNaRL4yd4'
     });
 
     return this.http.get('https://api.spotify.com/v1/browse/new-releases?limit=50', { headers });
 
+  }
+
+  getArtista( termino: string ){
+    const headers = new HttpHeaders({
+      Authorization: 'Bearer BQCD6YYqngZcgZ0gfyeShUzrOcHdSAJCxFWHFt2ftEfHFzUZ2tYZTEZxph9zyn1RFn6MOS2UsPfNaRL4yd4'
+    });
+
+    return this.http.get(`https://api.spotify.com/v1/search?query=${ termino }&type=artist&offset=0&limit=20`, { headers });
   }
 }
