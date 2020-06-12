@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { UsuarioModel } from '../../models/usuario.model';
+import { AuthService } from '../../services/auth.service';
+import { ClassField } from '@angular/compiler';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +15,7 @@ export class LoginComponent implements OnInit {
   emailError: string;
   passError: string;
 
-  constructor() { }
+  constructor( private auth: AuthService ) { }
 
   ngOnInit() {
   }
@@ -31,7 +33,14 @@ export class LoginComponent implements OnInit {
       
     }
     
-    console.log( loginForm.form.controls['pass'] );
+    this.auth.logIn( this.usuario ).subscribe(
+      ( success ) => {
+        console.log( success );
+      },
+      ( error ) => {
+        console.log( error.error.error.message );
+      }
+    );
 
   }
 
