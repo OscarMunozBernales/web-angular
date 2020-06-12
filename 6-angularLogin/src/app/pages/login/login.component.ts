@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { UsuarioModel } from '../../models/usuario.model';
 import { AuthService } from '../../services/auth.service';
-import { ClassField } from '@angular/compiler';
+import { Router } from '@angular/router';
+// import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-login',
@@ -15,9 +17,17 @@ export class LoginComponent implements OnInit {
   emailError: string;
   passError: string;
 
-  constructor( private auth: AuthService ) { }
+  rememberMe: boolean = false;
+
+  constructor( private auth: AuthService, private router: Router ) { }
 
   ngOnInit() {
+  
+    if ( localStorage.getItem( 'email' ) ){
+      this.usuario.email = localStorage.getItem( 'email' );
+      this.rememberMe = true;
+    }
+
   }
 
   onSubmit( loginForm: NgForm ){
@@ -35,7 +45,13 @@ export class LoginComponent implements OnInit {
     
     this.auth.logIn( this.usuario ).subscribe(
       ( success ) => {
-        console.log( success );
+        // console.log( success );
+
+        if ( this.rememberMe ){
+          localStorage.setItem( 'email', this.usuario.email );
+        }
+
+        this.router.navigateByUrl('/home');        
       },
       ( error ) => {
         console.log( error.error.error.message );
