@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForOf } from '@angular/common';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-template',
@@ -7,13 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TemplateComponent implements OnInit {
 
+  usuario: any = {
+    nombre: 'Carlos'
+  };
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  guardar(){
-    console.log( "Submit disparado!" );
+  guardar( forma: NgForm ){
+    console.log( forma );
+    console.log( forma.value );
   }
 
 }
