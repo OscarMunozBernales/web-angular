@@ -1,1 +1,3 @@
-<p>protegida works!</p>
+<pre *ngIf="auth.userProfile$ | async as profile">
+    <code>{{ profile | json }}</code>
+</pre>
