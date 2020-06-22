@@ -15,7 +15,7 @@
                [ngModel]=usuario.nombre
                placeholder="Nombre"
                required
-               minlength="5"
+               minlength="3"
                #nombre="ngModel">
       </div>
     </div>
@@ -26,7 +26,13 @@
 
         <input class="form-control"
                type="text"
-               placeholder="Apellido">
+               name="apellido"
+               [class.is-invalid]="apellido.invalid && apellido.touched"
+               [ngModel]=usuario.apellido
+               required
+               minlength="3"
+               placeholder="Apellido"
+               #apellido="ngModel">
       </div>
     </div>
 
