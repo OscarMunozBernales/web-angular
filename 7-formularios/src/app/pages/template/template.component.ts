@@ -11,10 +11,13 @@ import { PaisService } from '../../services/pais.service';
 export class TemplateComponent implements OnInit {
 
   usuario: any = {
-    nombre: 'Oscar',
-    apellido: 'Muñoz',
-    correo: 'omunozb@utem.cl'
+    nombre: '',
+    apellido: '',
+    correo: '',
+    pais:  ''
   };
+
+  paises: any[] = [];
 
   constructor( private paisService: PaisService ) { }
 
@@ -22,6 +25,12 @@ export class TemplateComponent implements OnInit {
 
     this.paisService.getPaises()
         .subscribe(( paises ) =>{
+          this.paises = paises;
+
+          this.paises.unshift({
+            nombre: '[Seleccione un país]',
+            codigo: ''
+          });
           console.log( paises );
         })
 
@@ -31,6 +40,7 @@ export class TemplateComponent implements OnInit {
 
   guardar( forma: NgForm ){
     console.log( forma );
+    console.log( forma.value );
 
     if ( forma.invalid ){
       Object.values( forma.controls ).forEach(( control ) => {       
@@ -40,7 +50,7 @@ export class TemplateComponent implements OnInit {
     }
 
 
-    console.log( forma.value );
+    // console.log( forma.value );
   }
 
 }
