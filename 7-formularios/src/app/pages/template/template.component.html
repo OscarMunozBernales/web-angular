@@ -17,6 +17,7 @@
                required
                minlength="3"
                #nombre="ngModel">
+        <small *ngIf="nombre.invalid && nombre.touched" class="form-text text-danger">Ingrese 3 letras</small>
       </div>
     </div>
 
@@ -33,6 +34,7 @@
                minlength="3"
                placeholder="Apellido"
                #apellido="ngModel">
+        <small *ngIf="apellido.invalid && apellido.touched" class="form-text text-danger">Ingrese 3 letras</small>
       </div>
     </div>
 
@@ -48,8 +50,11 @@
              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
              [class.is-invalid]="correo.invalid && correo.touched"
              name="correo"
-             ngModel
-             #correo="ngModel">
+             [ngModel]="usuario.correo"
+             #correo="ngModel"
+             required>
+      <small *ngIf="correo.invalid && correo.touched" class="form-text text-danger">Ingrese un correo valido</small>
+      
     </div>
   </div>
 
