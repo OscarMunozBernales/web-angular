@@ -7,6 +7,9 @@ import { AppRoutingModule } from './app-routing.module';
 // FORMULARIO
 import { FormsModule } from '@angular/forms';
 
+// PETICIONES HTTP
+import { HttpClientModule } from '@angular/common/http';
+
 import { AppComponent } from './app.component';
 import { HeroesComponent } from './pages/heroes/heroes.component';
 import { HeroeComponent } from './pages/heroe/heroe.component';
@@ -20,7 +23,8 @@ import { HeroeComponent } from './pages/heroe/heroe.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
