@@ -20,25 +20,19 @@ export class HeroeComponent implements OnInit {
   guardar( form: NgForm ){
 
     if( form.invalid ){
-      console.log( 'Formulario inválido' );
+      // console.log( 'Formulario inválido' );
       return;
     }
 
     if ( this.heroe.id ){
-      this.heroeServices.actualizarHeroe( this.heroe )
-          .subscribe(( resp ) => {
-            console.log( resp );
-          })
+      this.heroeServices.actualizarHeroe( this.heroe );
     } else {
-      this.heroeServices.crearHeroe( this.heroe )
-          .subscribe(( resp ) => {
-            console.log( resp );
-          })
+      this.heroeServices.crearHeroe( this.heroe );
     }
 
 
-    console.log( form );
-    console.log( this.heroe );
+    // console.log( form );
+    // console.log( this.heroe );
   }
 
 }
