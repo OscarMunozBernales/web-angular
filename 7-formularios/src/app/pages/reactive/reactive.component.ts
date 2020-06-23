@@ -18,6 +18,14 @@ export class ReactiveComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  agregarPasatiempo(){
+    this.Pasatiempos.push( this.formBuilder.control( '' ) );
+  }
+
+  borrarPasatiempo( index: number){
+    this.Pasatiempos.removeAt( index );
+  }
+
   get Pasatiempos() {
     return this.forma.get( 'pasatiempos' ) as FormArray;
   }
@@ -55,9 +63,7 @@ export class ReactiveComponent implements OnInit {
         distrito: ['' , Validators.required],
         ciudad: ['', Validators.required]
       }),
-      pasatiempos: this.formBuilder.array([
-        [],[],[]
-      ])
+      pasatiempos: this.formBuilder.array([])
     });
 
   }
@@ -67,11 +73,11 @@ export class ReactiveComponent implements OnInit {
     // this.forma.setValue({
     this.forma.reset({
       nombre: 'Oscar',
-      apellido: '',
-      correo: '',
+      apellido: 'Muñoz',
+      correo: 'asd@asd.com',
       direccion: {
-        distrito: '',
-        ciudad: ''
+        distrito: '1',
+        ciudad: '1'
       }
     });
   }
