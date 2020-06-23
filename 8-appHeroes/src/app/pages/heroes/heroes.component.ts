@@ -10,16 +10,28 @@ import { HeroeModel } from '../../models/heroe.model';
 export class HeroesComponent implements OnInit {
 
   heroes: HeroeModel[] = [];
+  cargando: boolean;
 
   constructor( private heroeServices: HeroesService ) { }
 
   ngOnInit(): void {
+    this.cargando = true;
     this.heroeServices.getHeroes().subscribe(
       (resp) => {
         this.heroes = resp;
-        console.log( this.heroes );
+        this.cargando = false;
+        // console.log( this.heroes );
       }
     );
   }
+
+  borrarHeroe( heroe: HeroeModel, index: number ){
+
+
+    this.heroes.splice( index, 1 );
+    this.heroeServices.borrarHeroe( heroe.id ).subscribe();
+
+  }
+  
 
 }
