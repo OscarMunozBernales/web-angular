@@ -36,6 +36,10 @@ export class ReactiveComponent implements OnInit {
     return this.forma.get( inputName ).invalid && this.forma.get( inputName ).touched;
   }
 
+  get usuarioNoValido() {
+    return this.forma.get('usuario').invalid && this.forma.get('usuario').touched
+  }
+
   get EqualsPass(){
     const PASS_1 = this.forma.get( 'pass_1' ).value;
     const PASS_2 = this.forma.get( 'pass_2' ).value;
