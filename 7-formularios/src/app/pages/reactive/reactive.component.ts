@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-reactive',
@@ -12,9 +12,14 @@ export class ReactiveComponent implements OnInit {
 
   constructor( private formBuilder: FormBuilder ) {
     this.crearFormulario();
+    this.setValoresFormulario();
   }
 
   ngOnInit(): void {
+  }
+
+  get Pasatiempos() {
+    return this.forma.get( 'pasatiempos' ) as FormArray;
   }
 
   getInputTextNoValid( inputName: string ){
@@ -47,11 +52,28 @@ export class ReactiveComponent implements OnInit {
         ] 
       ],
       direccion: this.formBuilder.group({
-        distrito: [''],
-        ciudad: ['']
-      })
+        distrito: ['' , Validators.required],
+        ciudad: ['', Validators.required]
+      }),
+      pasatiempos: this.formBuilder.array([
+        [],[],[]
+      ])
     });
 
+  }
+
+  setValoresFormulario(){
+
+    // this.forma.setValue({
+    this.forma.reset({
+      nombre: 'Oscar',
+      apellido: '',
+      correo: '',
+      direccion: {
+        distrito: '',
+        ciudad: ''
+      }
+    });
   }
 
   guardar(){
