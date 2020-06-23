@@ -14,6 +14,7 @@ export class ReactiveComponent implements OnInit {
   constructor( private formBuilder: FormBuilder, private validadores: ValidadoresService ) {
     this.crearFormulario();
     this.setValoresFormulario();
+    this.crearListeners();
   }
 
   ngOnInit(): void {
@@ -55,6 +56,7 @@ export class ReactiveComponent implements OnInit {
       ],
       apellido: [ '', [ Validators.required, Validators.minLength( 5 ), this.validadores.noHerrera ]],
       correo  : [ '', [ Validators.required, Validators.pattern( '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$' ) ]],
+      usuario : ['', , this.validadores.existeUsuario ],
       pass_1: ['', Validators.required],
       pass_2: ['', Validators.required],
       direccion: this.formBuilder.group({
@@ -68,16 +70,26 @@ export class ReactiveComponent implements OnInit {
 
   }
 
+  crearListeners() {
+    // this.forma.valueChanges.subscribe( valor => {
+    //   console.log(valor);
+    // });
+
+    // this.forma.statusChanges.subscribe( status => console.log({ status }));
+    this.forma.get('nombre').valueChanges.subscribe( console.log );
+  }
+
+
   setValoresFormulario(){
 
     // this.forma.setValue({
     this.forma.reset({
-      nombre: 'Oscar',
-      apellido: 'Muñoz',
-      correo: 'asd@asd.com',
+      nombre  : '',
+      apellido: '',
+      correo  : '',
       direccion: {
-        distrito: '1',
-        ciudad: '1'
+        distrito : '',
+        ciudad   : ''
       }
     });
   }
