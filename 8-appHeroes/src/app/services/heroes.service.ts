@@ -14,9 +14,9 @@ export class HeroesService {
   crearHeroe( heroe: HeroeModel ){
     return this.http.post( `${ this.URL }/heroes.json`, heroe )
                .pipe(map(( resp : any ) => {
-                  heroe.id = resp.name
-                  return heroe;
-               }));
+                 heroe.id = resp.name
+                 return heroe;
+                }));
   }
 
   actualizarHeroe( heroe: HeroeModel ){
@@ -33,6 +33,10 @@ export class HeroesService {
         return this.crearArregloHeroes( resp );
       })
     );
+  }
+
+  getHeroe( index: string ){
+    return this.http.get( `${ this.URL }/heroes/${ index }.json`);
   }
 
   private crearArregloHeroes( heroesObj: object ){

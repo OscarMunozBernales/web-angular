@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { HeroeModel } from 'src/app/models/heroe.model';
+import { HeroeModel } from '../../models/heroe.model';
 import { NgForm } from '@angular/forms';
 import { HeroesService } from '../../services/heroes.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-heroe',
@@ -10,29 +11,40 @@ import { HeroesService } from '../../services/heroes.service';
 })
 export class HeroeComponent implements OnInit {
 
-  heroe = new HeroeModel();
+  heroe: HeroeModel = new HeroeModel();
 
-  constructor( private heroeServices: HeroesService ) { }
+  constructor( private heroeServices: HeroesService, private route: ActivatedRoute ) { }
 
   ngOnInit(): void {
+
+    const ID = this.route.snapshot.paramMap.get('id');
+    if ( ID !== 'nuevo' ){
+      this.heroeServices.getHeroe( ID ).subscribe(( resp: HeroeModel ) => {
+        this.heroe = resp;
+        this.heroe.id = ID;
+      });
+    }
+
   }
 
   guardar( form: NgForm ){
 
     if( form.invalid ){
-      // console.log( 'Formulario inválido' );
+      console.log( 'Formulario inválido' );
       return;
     }
 
     if ( this.heroe.id ){
-      this.heroeServices.actualizarHeroe( this.heroe );
+      // console.log( 'Actualizando un heroe' );
+      this.heroeServices.actualizarHeroe( this.heroe ).subscribe();
     } else {
-      this.heroeServices.crearHeroe( this.heroe );
+      // console.log( 'Creando un heroe' );
+      this.heroeServices.crearHeroe( this.heroe ).subscribe();
     }
 
 
-    // console.log( form );
-    // console.log( this.heroe );
+    console.log( form );
+    console.log( this.heroe );
   }
 
 }
