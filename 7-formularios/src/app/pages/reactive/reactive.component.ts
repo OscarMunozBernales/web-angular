@@ -35,6 +35,13 @@ export class ReactiveComponent implements OnInit {
     return this.forma.get( inputName ).invalid && this.forma.get( inputName ).touched;
   }
 
+  get EqualsPass(){
+    const PASS_1 = this.forma.get( 'pass_1' ).value;
+    const PASS_2 = this.forma.get( 'pass_2' ).value;
+    
+    return ( PASS_1 === PASS_2 )? false : true;
+  }
+
   crearFormulario(){
 
     // this.getNombreNovalido();
@@ -46,26 +53,17 @@ export class ReactiveComponent implements OnInit {
           Validators.minLength(5)
         ] 
       ],
-      apellido: [
-        '', 
-        [
-          Validators.required,
-          Validators.minLength( 5 ),
-          this.validadores.noHerrera
-        ]
-      ],
-      correo  : [
-        '', 
-        [
-          Validators.required,
-          Validators.pattern( '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$' )
-        ] 
-      ],
+      apellido: [ '', [ Validators.required, Validators.minLength( 5 ), this.validadores.noHerrera ]],
+      correo  : [ '', [ Validators.required, Validators.pattern( '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$' ) ]],
+      pass_1: ['', Validators.required],
+      pass_2: ['', Validators.required],
       direccion: this.formBuilder.group({
         distrito: ['' , Validators.required],
         ciudad: ['', Validators.required]
       }),
       pasatiempos: this.formBuilder.array([])
+    },{
+      validators: [ this.validadores.passwordsIguales( 'pass_1', 'pass_2', ) ]
     });
 
   }
