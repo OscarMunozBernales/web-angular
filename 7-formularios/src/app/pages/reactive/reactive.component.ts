@@ -17,8 +17,13 @@ export class ReactiveComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  getInputTextNoValid( inputName: string ){
+    return this.forma.get( inputName ).invalid && this.forma.get( inputName ).touched;
+  }
+
   crearFormulario(){
 
+    // this.getNombreNovalido();
     this.forma = this.formBuilder.group({
       nombre  : [
         '',  // VALOR POR DEFECTO
@@ -46,7 +51,12 @@ export class ReactiveComponent implements OnInit {
   }
 
   guardar(){
-    console.log( this.forma );
+    // console.log( this.forma );
+    if ( this.forma.invalid ){
+      return Object.values( this.forma.controls ).forEach(( control ) => {       
+        control.markAllAsTouched();
+      });  
+    }
   }
 
 }

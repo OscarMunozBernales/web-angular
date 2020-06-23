@@ -12,7 +12,12 @@
         <input class="form-control"
                type="text"
                formControlName="nombre"
-               placeholder="Nombre">
+               placeholder="Nombre"
+               [class.is-invalid]="getInputTextNoValid( 'nombre' )">
+        <small *ngIf="getInputTextNoValid( 'nombre' )"
+                class="text-danger"> 
+                Ingrese al menos 5 letras 
+        </small>
       </div>
     </div>
 
@@ -23,7 +28,12 @@
         <input class="form-control"
                type="text"
                formControlName="apellido"
-               placeholder="Apellido">
+               placeholder="Apellido"
+               [class.is-invalid]="getInputTextNoValid( 'apellido' )">
+        <small *ngIf="getInputTextNoValid( 'apellido' )"
+                class="text-danger"> 
+                Ingrese al menos 5 letras 
+       </small>
       </div>
     </div>
 
@@ -36,7 +46,12 @@
       <input class="form-control"
              type="email"
              formControlName="correo"
+             [class.is-invalid]="getInputTextNoValid( 'correo' )"
              placeholder="Correo electrónico">
+      <small *ngIf="getInputTextNoValid( 'correo' )"
+             class="text-danger"> 
+             Ingrese un correo valido 
+     </small>
     </div>
   </div>
 
@@ -63,7 +78,7 @@
 </pre>
 
 <pre>
-
+  Json valores input's:
   {{ forma.value | json }}
 
 </pre>
