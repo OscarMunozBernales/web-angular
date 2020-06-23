@@ -26,4 +26,30 @@ export class HeroesService {
 
     return this.http.put( `${ this.URL }/heroes/${ heroe.id }.json`, heroeTemp );
   }
+
+  getHeroes(){
+    return this.http.get( `${ this.URL }/heroes.json` ).pipe(
+      map((resp) => {
+        return this.crearArregloHeroes( resp );
+      })
+    );
+  }
+
+  private crearArregloHeroes( heroesObj: object ){
+
+    const heroes: HeroeModel[] = [];
+
+    if ( heroesObj === null ) return null; // VALIDAMOS LA EXISTENCIA DE DATOS EN LA BASE
+
+    Object.keys( heroesObj ).forEach( (key) => {
+  
+      const heroe: HeroeModel = heroesObj[key];
+      heroe.id = key;
+
+      heroes.push( heroe );
+
+    });
+
+    return heroes
+  }
 }
