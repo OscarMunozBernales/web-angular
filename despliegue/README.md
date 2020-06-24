@@ -13,3 +13,41 @@ Para hacer correo el http-server, escribimos en la consola
     http-server -a localhost -p 2324
 </pre>
 
+2. A producción
+Antes de ejecutar una linea de comandos tenemos que ir al archivo environments.ts en 'src/environments/environments.ts' y cambiar la siguiente linea
+```ts
+export const environment = {
+  production: false // cambiarla por true
+};
+
+```
+
+```ts
+// archivo de rutas
+
+@NgModulo({
+    imports: [
+        RouterModule.forRoot( routes, { useHash: true }) // useHash: true, nos va a señalar que al momento de mandar a prod no nos movamos de la carpeta raiz
+    ]
+})
+```
+
+```html
+<!-- index.hmtl -->
+<head>
+    <meta charset="utf-8">
+    <title>Despliegue</title>
+    <base href=""> <!-- le vamos a quitar el / para que use el path relativo -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+```
+
+Luego en la terminal escribimos:
+```
+dentro de la carpeta
+ng build --prod 
+```
+
+Y nuestro proyecto va a pasar a producción.
+
